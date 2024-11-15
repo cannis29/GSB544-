@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Palmer Penguins Modeling</title>
+<title>8.1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Palmer Penguins Modeling</h1>
+<h1 class="title">8.1</h1>
 </div>
 
 
@@ -96,24 +96,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="palmer-penguins-modeling" class="level1">
+<h1>Palmer Penguins Modeling</h1>
 <p>Import the Palmer Penguins dataset and print out the first few rows.</p>
 <p>Suppose we want to predict <code>bill_depth_mm</code> using the other variables in the dataset.</p>
 <p>Which variables would we need to <strong>dummify</strong>?</p>
-<div id="cell-2" class="cell" data-outputid="3e5287da-cea5-43ad-e94a-4181222114f7">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Palmer Penguins dataset</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv'</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first few rows</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.head())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify categorical variables that need to be dummified</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>categorical_variables <span class="op">=</span> [<span class="st">'species'</span>, <span class="st">'island'</span>, <span class="st">'sex'</span>]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to dummify the 'species', 'island', and 'sex' columns because these are categorical variables</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># and we need to transform them into numerical values for our model.</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-2" class="cell" data-outputid="92e25b63-c54b-4eee-8bf1-674979ae84fb" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Palmer Penguins dataset</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first few rows</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins.head())</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify categorical variables that need dummification</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>categorical_vars <span class="op">=</span> [<span class="st">'species'</span>, <span class="st">'island'</span>, <span class="st">'sex'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
 0  Adelie  Torgersen            39.1           18.7              181.0   
@@ -130,6 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4       3450.0  female  2007  </code></pre>
 </div>
 </div>
+<p>We need to dummify categorical variables because most machine learning algorithms work with numerical data. Dummification converts categorical variables into a set of binary (0 or 1) variables representing each category.</p>
 <p>Let’s use <code>bill_length_mm</code> to predict <code>bill_depth_mm</code>. Prepare your data and fit the following models on the entire dataset:</p>
 <ul>
 <li>Simple linear regression (e.g.&nbsp;straight-line) model</li>
@@ -138,35 +138,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Degree 10 polynomial model</li>
 </ul>
 <p>Make predictions for each model and plot your fitted models on the scatterplot.</p>
-<div id="cell-4" class="cell" data-outputid="42ac9250-80ad-4204-b36e-475f527c359a">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, StandardScaler</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Scaling for numerical features</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>numerical_features <span class="op">=</span> [<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'flipper_length_mm'</span>, <span class="st">'body_mass_g'</span>]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>penguins[numerical_features] <span class="op">=</span> scaler.fit_transform(penguins[numerical_features])</span>
+<div id="cell-5" class="cell" data-outputid="a0bb6d6a-4b23-47e2-9a66-f93783263c8f" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes, geom_point, geom_line, labs, theme_minimal</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Palmer Penguins dataset</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with missing values</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> penguins.dropna()</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the data</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> penguins[[<span class="st">'bill_length_mm'</span>]]</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> penguins[<span class="st">'bill_depth_mm'</span>]</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a simple linear regression model</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>linear_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>linear_model.fit(X, y)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'predictions_linear'</span>] <span class="op">=</span> linear_model.predict(X) <span class="co"># adding prediction column</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the models and prepare predictions</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> []</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> pd.DataFrame({<span class="st">'bill_length_mm'</span>: X.squeeze(), <span class="st">'bill_depth_mm'</span>: y})</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with plotnine</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>(ggplot(penguins, aes(x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_point()</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_line(aes(y<span class="op">=</span><span class="st">'predictions_linear'</span>), color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(title<span class="op">=</span><span class="st">'Bill Length vs. Bill Depth with Linear Model'</span>, x<span class="op">=</span><span class="st">'Bill Length (mm)'</span>, y<span class="op">=</span><span class="st">'Bill Depth (mm)'</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> degrees:</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    poly_features <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>degree)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    X_poly <span class="op">=</span> poly_features.fit_transform(X)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    model.fit(X_poly, y)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    predictions[<span class="ss">f'degree_</span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">'</span>] <span class="op">=</span> model.predict(X_poly)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape data for plotnine</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>predictions_long <span class="op">=</span> predictions.melt(id_vars<span class="op">=</span>[<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>],</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                                    var_name<span class="op">=</span><span class="st">'model'</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                                    value_name<span class="op">=</span><span class="st">'prediction'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using plotnine</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> (</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    ggplot(predictions_long, aes(x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>)) <span class="op">+</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    geom_point(color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    geom_line(aes(y<span class="op">=</span><span class="st">'prediction'</span>, color<span class="op">=</span><span class="st">'model'</span>), size<span class="op">=</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    labs(</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"Polynomial Regression Models"</span>,</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Bill Depth (mm)"</span>,</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"Model"</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    theme_minimal()</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -175,130 +195,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-outputid="56e920c9-84f5-46e8-dad8-b95c79171cbc">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a quadratic model</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>poly_features_2 <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X_poly_2 <span class="op">=</span> poly_features_2.fit_transform(X)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>quadratic_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>quadratic_model.fit(X_poly_2, y)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'predictions_quadratic'</span>] <span class="op">=</span> quadratic_model.predict(X_poly_2)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with plotnine for quadratic fit</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>(ggplot(penguins, aes(x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>))</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_point()</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_line(aes(y<span class="op">=</span><span class="st">'predictions_quadratic'</span>), color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(title<span class="op">=</span><span class="st">'Bill Length vs. Bill Depth with Quadratic Model'</span>, x<span class="op">=</span><span class="st">'Bill Length (mm)'</span>, y<span class="op">=</span><span class="st">'Bill Depth (mm)'</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Copy_of_Practice_Activity_Polynomial_Regression_files/figure-html/cell-4-output-1.png" width="640" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-6" class="cell" data-outputid="49b26575-7a27-431f-a7a4-db755a36e5a2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a cubic model</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>poly_features_3 <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X_poly_3 <span class="op">=</span> poly_features_3.fit_transform(X)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cubic_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cubic_model.fit(X_poly_3, y)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'predictions_cubic'</span>] <span class="op">=</span> cubic_model.predict(X_poly_3)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with plotnine for cubic fit</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>(ggplot(penguins, aes(x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_point()</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_line(aes(y<span class="op">=</span><span class="st">'predictions_cubic'</span>), color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(title<span class="op">=</span><span class="st">'Bill Length vs. Bill Depth with Cubic Model'</span>, x<span class="op">=</span><span class="st">'Bill Length (mm)'</span>, y<span class="op">=</span><span class="st">'Bill Depth (mm)'</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Copy_of_Practice_Activity_Polynomial_Regression_files/figure-html/cell-5-output-1.png" width="640" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-7" class="cell" data-outputid="6dfe73db-7156-4d75-940f-f297b85da591">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a degree 10 polynomial model</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>poly_features_10 <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>X_poly_10 <span class="op">=</span> poly_features_10.fit_transform(X)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>degree_10_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>degree_10_model.fit(X_poly_10, y)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">'predictions_degree_10'</span>] <span class="op">=</span> degree_10_model.predict(X_poly_10)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with plotnine for degree 10 polynomial fit</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>(ggplot(penguins, aes(x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_point()</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_line(aes(y<span class="op">=</span><span class="st">'predictions_degree_10'</span>), color<span class="op">=</span><span class="st">'orange'</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(title<span class="op">=</span><span class="st">'Bill Length vs. Bill Depth with Degree 10 Polynomial Model'</span>, x<span class="op">=</span><span class="st">'Bill Length (mm)'</span>, y<span class="op">=</span><span class="st">'Bill Depth (mm)'</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Copy_of_Practice_Activity_Polynomial_Regression_files/figure-html/cell-6-output-1.png" width="640" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-8" class="cell" data-outputid="7dbadbcf-237a-4815-e02f-b155ed38f981">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ... (previous code for imports, data preprocessing, and model fitting) ...</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate MSE for each model</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>mse_linear <span class="op">=</span> mean_squared_error(y, penguins[<span class="st">'predictions_linear'</span>])</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mse_quadratic <span class="op">=</span> mean_squared_error(y, penguins[<span class="st">'predictions_quadratic'</span>])</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mse_cubic <span class="op">=</span> mean_squared_error(y, penguins[<span class="st">'predictions_cubic'</span>])</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>mse_degree_10 <span class="op">=</span> mean_squared_error(y, penguins[<span class="st">'predictions_degree_10'</span>])</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the MSE values</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Linear Regression MSE: </span><span class="sc">{</span>mse_linear<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Quadratic Regression MSE: </span><span class="sc">{</span>mse_quadratic<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cubic Regression MSE: </span><span class="sc">{</span>mse_cubic<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Degree 10 Polynomial Regression MSE: </span><span class="sc">{</span>mse_degree_10<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the model with the lowest MSE</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>min_mse <span class="op">=</span> <span class="bu">min</span>(mse_linear, mse_quadratic, mse_cubic, mse_degree_10)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> min_mse <span class="op">==</span> mse_linear:</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    best_model <span class="op">=</span> <span class="st">"Linear Regression"</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> min_mse <span class="op">==</span> mse_quadratic:</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    best_model <span class="op">=</span> <span class="st">"Quadratic Regression"</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> min_mse <span class="op">==</span> mse_cubic:</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    best_model <span class="op">=</span> <span class="st">"Cubic Regression"</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    best_model <span class="op">=</span> <span class="st">"Degree 10 Polynomial Regression"</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">The best-fitting model is: </span><span class="sc">{</span>best_model<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear Regression MSE: 0.947730318603363
-Quadratic Regression MSE: 0.8904623740289059
-Cubic Regression MSE: 0.8629672518141515
-Degree 10 Polynomial Regression MSE: 0.7014401010244867
-
-The best-fitting model is: Degree 10 Polynomial Regression</code></pre>
-</div>
-</div>
-<section id="are-any-of-the-models-above-underfitting-the-data-if-so-which-ones-and-how-can-you-tell" class="level3">
-<h3 class="anchored" data-anchor-id="are-any-of-the-models-above-underfitting-the-data-if-so-which-ones-and-how-can-you-tell">Are any of the models above underfitting the data? If so, which ones and how can you tell?</h3>
-<p>The linear model.</p>
-<p>The linear model is too simple to capture the real patterns in the data, so it misses out on important details, which we see as underfitting.</p>
-</section>
-<section id="are-any-of-the-models-above-overfitting-the-data-if-so-which-ones-and-how-can-you-tell" class="level3">
-<h3 class="anchored" data-anchor-id="are-any-of-the-models-above-overfitting-the-data-if-so-which-ones-and-how-can-you-tell">Are any of the models above overfitting the data? If so, which ones and how can you tell?</h3>
-<p>The 10 degree polynomial</p>
-<p>The 10-degree polynomial is too complex and fits the noise in the data, so it doesn’t generalize well to new data, which shows as overfitting.</p>
-</section>
-<section id="which-of-the-above-models-do-you-think-fits-the-data-best-and-why" class="level2">
-<h2 class="anchored" data-anchor-id="which-of-the-above-models-do-you-think-fits-the-data-best-and-why">Which of the above models do you think fits the data best and why?</h2>
-<p>Cubic model</p>
-<p>The cubic model captures the main patterns without being too simple or overly complicated, making it a good balance for fitting the data.</p>
+<ul>
+<li>Are any of the models above underfitting the data? If so, which ones and how can you tell?</li>
+</ul>
+<p>Degree 1 is underfitting the data because it doesn’t take into account the variation in the relationship between bill_length_mm and bill_depth_mm. The simple straight-line model oversimplifies the pattern in the data.</p>
+<ul>
+<li>Are any of thhe models above overfitting the data? If so, which ones and how can you tell?</li>
+</ul>
+<p>Degree 10 is overfitting the data because it creates a highly complex curve that follows the noise in the dataset too closely. This can be seen in the extreme oscillations in the model’s predictions that don’t match the overall trend of the data.</p>
+<ul>
+<li>Which of the above models do you think fits the data best and why?</li>
+</ul>
+<p>The cubic model (degree 3) fits the data best because it balances capturing the underlying trend without being overly complex. It accounts for variation in the relationship while avoiding the excessive complexity seen in the degree 10 model.</p>
 </section>
 
 </main>
